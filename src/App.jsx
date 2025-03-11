@@ -48,8 +48,16 @@ export default function App() {
   // Slide actual, empieza por 1 ya que el primer id en data.js es 1
   const [id, setId] = useState(1);
 
-  // Incrementamos el slide cada dos segundos
-  setTimeout(() => setId((id % paisajes.length) + 1), 2000);
+    // Incrementamos el slide cada dos segundos
+  setTimeout(() => {
+    // Si llegamos al último slide volvemos a empezar
+    if (id == paisajes.length) {
+      setId(1);
+    } else {
+      // Sino se avanza al siguiente +1
+      setId(id + 1);
+    }
+  }, 2000);
 
   // Obtenemos la categoría del slide actual, restamos 1 ya que al ser array empieza por 0
   const categoria = paisajes[id - 1].categoria;
